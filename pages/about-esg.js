@@ -1,3 +1,6 @@
+import NavBar from "../components/NavBar";
+import Head from "next/head";
+
 export default function AboutESG() {
   return (
     <div className="h-screen w-screen grid grid-rows-6 bg-white">
