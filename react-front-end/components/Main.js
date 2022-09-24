@@ -22,6 +22,8 @@ export default function Main() {
   // Handle querying back-end
   const handleQuery = () => {
     setDemoState(false);
+    setLoadingState(true);
+    // Query data from back-end then setLoadingState to false
   };
 
   return (
