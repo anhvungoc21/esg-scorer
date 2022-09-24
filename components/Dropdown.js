@@ -5,6 +5,7 @@ export default function Dropdown({ inputHandler }) {
       defaultValue=""
       onChange={(e) => inputHandler(e.target.value)}
     >
+      <option value="">Choose a company...</option>
       <option value="AXP">AXP - American Express Co</option>
       <option value="AMGN">AMGN - Amgen Inc</option>
       <option value="AAPL">AAPL - Apple Inc</option>
