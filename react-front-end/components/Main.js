@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useFirstRender from "../helpers/useFirstRender";
 import LoadingSpinner from "./LoadingSpinner";
 import DemoResult from "./DemoResult";
-import Dropdown from "../components/Dropdown";
+import Dropdown from "./Dropdown";
 import dynamic from "next/dynamic";
 
 export default function Main() {
@@ -17,7 +17,7 @@ export default function Main() {
 
   // Visualization states
   const [graphDataState, setGraphDataState] = useState([]);
-  const Chart = dynamic(import("../components/Chart"), { ssr: false });
+  const Chart = dynamic(import("./Chart"), { ssr: false });
 
   // Handle querying back-end
   const handleQuery = () => {
