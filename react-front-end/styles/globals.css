@@ -10,6 +10,8 @@
   --normal: 400;
   --bold: 500;
   --extra-bold: 600;
+  --purple: "#8884d8";
+  --green: "#82ca9d";
 }
 
 @keyframes spinner {
@@ -19,6 +21,13 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+span[contenteditable]:empty::before {
+  display: inline-block;
+  opacity: 0.5;
+  font-style: italic;
+  content: "news articles, reviews, mission statements, etc.";
 }
 
 .loading-spinner {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import useFirstRender from "../helpers/useFirstRender";
 import LoadingSpinner from "./LoadingSpinner";
 import DemoResult from "./DemoResult";
@@ -47,6 +47,18 @@ export default function Main() {
     setLoadingTextState(true);
   };
 
+  // Automatically scroll to bottom
+  const endRef = useRef(null);
+  const scrollToBottom = () => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Scroll to bottom when new proofs manifest
+  useEffect(() => {
+    if (!loadingState) return;
+    scrollToBottom();
+  }, [loadingState]);
+
   useEffect(() => {
     if (!loadingState) return;
     (async () => {
@@ -93,21 +105,26 @@ export default function Main() {
     })();
   }, [loadingTextState]);
 
-  console.log(textResultState);
-  console.log(wordDictState);
-
   if (modeState) {
     return (
       <div className="flex flex-col h-full w-1/2 row-span-5 items-center pt-8 gap-12 self-center">
         <div
           id="description"
-          className="flex w-full justify-center text-3xl text-center"
+          className="w-full justify-center text-3xl text-center"
         >
-          Explore how socially responsible companies are
-          <br />
-          based on historical data and sentiment analysis
-          <br />
-          with the help of Machine Learning.
+          Explore how{" "}
+          <span className="[font-weight:var(--extra-bold)]">
+            socially responsible
+          </span>{" "}
+          companies are based on{" "}
+          <span className="[font-weight:var(--extra-bold)]">
+            sentiment analysis
+          </span>{" "}
+          with historical data using{" "}
+          <span className="[font-weight:var(--extra-bold)]">
+            Machine Learning
+          </span>
+          .
         </div>
 
         <div id="mode-toggler-wrapper" className="w-full">
@@ -144,10 +161,48 @@ export default function Main() {
         ) : loadingState ? (
           <LoadingSpinner />
         ) : (
-          <div id="result-wrapper" className="w-full">
+          <div id="result-wrapper" className="flex flex-col w-full gap-8">
             <div id="results" className="flex flex-col gap-2">
-              <span> </span>
-              <div className="rounded-sm border-black border-2 p-2"></div>
+              <span className="[font-weight:var(--extra-bold)] text-4xl">
+                Scores
+              </span>
+              <div className="w-full grid grid-rows-3 rounded-sm border-black border-2 p-1">
+                <div
+                  id="score-category"
+                  className="grid row-span-1 grid-cols-4 [font-weight:var(--extra-bold)] p-1"
+                >
+                  <div className="flex items-center justify-center">
+                    Company
+                  </div>
+                  <div className="flex items-center justify-center">
+                    Environmental
+                  </div>
+                  <div className="flex items-center justify-center">Social</div>
+                  <div className="flex items-center justify-center">
+                    Governance
+                  </div>
+                </div>
+                {graphDataState.map((obj, i) => (
+                  <div
+                    id="score"
+                    className="grid row-span-1 grid-cols-4"
+                    key={`score-row-${i}`}
+                  >
+                    <div className="flex items-center justify-center">
+                      {obj.companyName}
+                    </div>
+                    <div className="flex items-center justify-center">
+                      {obj.env}
+                    </div>
+                    <div className="flex items-center justify-center">
+                      {obj.soc}
+                    </div>
+                    <div className="flex items-center justify-center">
+                      {obj.gov}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div id="visualization-wrapper" className="w-full">
@@ -167,13 +222,21 @@ export default function Main() {
       <div className="flex flex-col h-full w-1/2 row-span-5 items-center pt-8 gap-12 self-center">
         <div
           id="description"
-          className="flex w-full justify-center text-3xl text-center"
+          className="w-full justify-center text-3xl text-center"
         >
-          Explore how socially responsible companies are
-          <br />
-          based on historical data and sentiment analysis
-          <br />
-          with the help of Machine Learning.
+          Explore how{" "}
+          <span className="[font-weight:var(--extra-bold)]">
+            socially responsible
+          </span>{" "}
+          companies are based on{" "}
+          <span className="[font-weight:var(--extra-bold)]">
+            sentiment analysis
+          </span>{" "}
+          with historical data using{" "}
+          <span className="[font-weight:var(--extra-bold)]">
+            Machine Learning
+          </span>
+          .
         </div>
 
         <div id="mode-toggler-wrapper" className="w-full">
@@ -204,6 +267,41 @@ export default function Main() {
             </button>
           </div>
         </div>
+
+        <div id="result-wrapper" className="flex flex-col w-full gap-2">
+          <span className="[font-weight:var(--extra-bold)] text-4xl">
+            Scores
+          </span>
+          <div className="w-full grid grid-rows-3 rounded-sm border-black border-2 p-1">
+            <div
+              id="score-category"
+              className="grid row-span-1 grid-cols-4 [font-weight:var(--extra-bold)] p-1"
+            >
+              <div className="flex items-center justify-center">Overall</div>
+              <div className="flex items-center justify-center">
+                Environmental
+              </div>
+              <div className="flex items-center justify-center">Social</div>
+              <div className="flex items-center justify-center">Governance</div>
+            </div>
+            <div id="score" className="grid row-span-1 grid-cols-4">
+              <div className="flex items-center justify-center">
+                {textResultState.total}
+              </div>
+              <div className="flex items-center justify-center">
+                {textResultState.env}
+              </div>
+              <div className="flex items-center justify-center">
+                {textResultState.soc}
+              </div>
+              <div className="flex items-center justify-center">
+                {textResultState.gov}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ref={endRef} />
       </div>
     );
   }
