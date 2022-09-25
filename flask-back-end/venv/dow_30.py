@@ -1,10 +1,11 @@
 import pandas as pd
 import intrinio_sdk
 import nltk
+import openpyxl
+
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 from intrinio_sdk.rest import ApiException
-from pprint import pprint
 
 def getDictionaryFromXLSFile(XLSFile, ratings):
     wordlist = {}
