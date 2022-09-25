@@ -17,11 +17,18 @@ const demoData = [
 
 export default function DemoResult() {
   return (
-    <div id="visualization-wrapper" className="w-full">
-      <span className="[font-weight:var(--extra-bold)] text-4xl">
-        Visualization
-      </span>
-      <Chart data={demoData} />
+    <div id="result-wrapper" className="flex flex-col w-full gap-16">
+      <div id="results" className="w-full">
+        <span className="[font-weight:var(--extra-bold)] text-4xl">
+          Results
+        </span>
+      </div>
+      <div id="visualization-wrapper" className="w-full">
+        <span className="[font-weight:var(--extra-bold)] text-4xl">
+          Visualization
+        </span>
+        <Chart data={demoData} />
+      </div>
     </div>
   );
 }

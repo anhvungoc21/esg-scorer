@@ -8,17 +8,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Format for a single data entry
-// Data from the backend should be JSON of multiple entries
-const dataEntryFormat = {
-  companyName: "",
-  soc: 0,
-  gov: 0,
-  env: 0,
-};
-
 // Returns a well-formatted array of objects for graphing
 const parseGraphData = (data) => {
+  console.log("LENGTH" + data.length);
   // Input array length 1
   if (data.length == 1) {
     const thisObj = data[0];
@@ -39,7 +31,6 @@ const parseGraphData = (data) => {
         fullMark: 10,
       },
     ];
-
     // Input array length 2
   } else if (data.length == 2) {
     const [obj1, obj2] = data;
@@ -75,7 +66,6 @@ export default function Chart({ data }) {
 
   const colors = ["#8884d8", "#82ca9d"];
   const parsedData = parseGraphData(data);
-  console.log(parsedData);
 
   return parsedData.length != 0 ? (
     <ResponsiveContainer width="100%" height={400}>
@@ -88,7 +78,7 @@ export default function Chart({ data }) {
       >
         <PolarGrid />
         <PolarAngleAxis dataKey="criteria" />
-        <PolarRadiusAxis angle={30} domain={[0, 10]} />
+        <PolarRadiusAxis angle={30} domain={[-10, 10]} />
         {data.map((e, i) => {
           return (
             <Radar
@@ -97,7 +87,7 @@ export default function Chart({ data }) {
               dataKey={`mark_${i + 1}`}
               stroke={colors[i]}
               fill={colors[i]}
-              fillOpacity={0.8}
+              fillOpacity={0.7}
             ></Radar>
           );
         })}

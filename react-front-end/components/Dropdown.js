@@ -24,7 +24,7 @@ export default function Dropdown({ inputHandler }) {
       <option value="MCD">MCD - McDonald's Corp</option>
       <option value="MMM">MMM - 3M Co</option>
       <option value="MRK">MRK - Merck & Co Inc</option>
-      <option value="MSFT">MSFT - Microsfot Corp</option>
+      <option value="MSFT">MSFT - Microsoft Corp</option>
       <option value="NKE">NKE - Nike Inc</option>
       <option value="PG">PG - Procter & Gamble Co</option>
       <option value="TRV">TRV - Travelers Companies Inc</option>
