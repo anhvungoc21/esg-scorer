@@ -5,7 +5,7 @@ from cleantext import clean
 # import matplotlib.pyplot as plt
 # from wordcloud import WordCloud 
 # from IPython.display import Image
-from flask import Response
+# from flask import Response
 
 # import CSV
 ESGwordlist= pd.read_csv('./resources/expanded_dict.csv')

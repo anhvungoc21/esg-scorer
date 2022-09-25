@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/anhvu/Desktop/Personal Projects/esg-scorer/my-app/flask-back-end/venv/venv/bin/python3.10" "$0" "$@"
+'''exec' "/Users/anhvu/Desktop/Personal Projects/esg-scorer/my-app/flask-back-end/venv/bin/python3.10" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

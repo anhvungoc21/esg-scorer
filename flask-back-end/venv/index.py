@@ -6,6 +6,10 @@ from esg_visual import ESG_Calculator
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def default():
+    return ""
+
 @app.route("/get-dow-30")
 def get_dow_30():
     def formatDow30ESG(ticker):
