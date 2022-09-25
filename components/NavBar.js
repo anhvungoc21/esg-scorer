@@ -19,8 +19,7 @@ export default function NavBar() {
         </Link>
       </div>
       <div className="hidden md:flex items-center hover:[opacity:0.5] pt-2">
-        {/* <Link href="https://www.investopedia.com/terms/e/environmental-social-and-governance-esg-criteria.asp"> */}
-        <Link href="./about-esg">
+        <Link href="https://www.investopedia.com/terms/e/environmental-social-and-governance-esg-criteria.asp">
           <a>What is ESG?</a>
         </Link>
       </div>

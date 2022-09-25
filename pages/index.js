@@ -15,7 +15,7 @@ export default function MyApp() {
   }, [scrollState]);
 
   return (
-    <div className="flex flex-col w-screen bg-white [font-weight:var(--normal)] overflow-hide scrollbar-hide pb-8">
+    <div className="flex flex-col w-screen bg-white [font-weight:var(--normal)] overflow-scroll scrollbar-hide pb-8">
       <Head>
         <title>ESG Scorer</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

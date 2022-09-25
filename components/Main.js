@@ -2,9 +2,13 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import useFirstRender from "../helpers/useFirstRender";
 import LoadingSpinner from "./LoadingSpinner";
 import DemoResult from "./DemoResult";
+import DemoTextResult from "./DemoTextResult";
 import Dropdown from "./Dropdown";
 import ModeToggler from "./ModeToggler";
+import WordCloud from "./WordCloud";
 import dynamic from "next/dynamic";
+import roundFloat from "../helpers/roundFloat";
+import roundFloatDict from "../helpers/roundFloatDict";
 
 export default function Main({ setScrollState }) {
   // State for rendering the two functionalities
@@ -69,7 +73,7 @@ export default function Main({ setScrollState }) {
 
       const dataArr = await res.json();
       if (!dataArr) return;
-      setGraphDataState(dataArr);
+      setGraphDataState(dataArr.map(roundFloatDict));
       setScrollState(true);
       setLoadingState(false);
     })();
@@ -97,7 +101,9 @@ export default function Main({ setScrollState }) {
 
       const data = await res.json();
       if (!data) return;
-      setTextResultState([data.total, data.gov, data.env, data.soc]);
+      setTextResultState(
+        [data.total, data.env, data.soc, data.gov].map(roundFloat)
+      );
       setWordDictState(data.dict);
       setScrollState(true);
     })();
@@ -266,38 +272,61 @@ export default function Main({ setScrollState }) {
           </div>
         </div>
 
-        <div id="result-wrapper" className="flex flex-col w-full gap-2">
-          <span className="[font-weight:var(--extra-bold)] text-4xl">
-            Scores
-          </span>
-          <div className="w-full grid grid-rows-3 rounded-sm border-black border-2 p-1">
-            <div
-              id="score-category"
-              className="grid row-span-1 grid-cols-4 [font-weight:var(--extra-bold)] p-1"
-            >
-              <div className="flex items-center justify-center">Overall</div>
-              <div className="flex items-center justify-center">
-                Environmental
+        {demoState ? (
+          <DemoTextResult />
+        ) : loadingState ? (
+          <LoadingSpinner />
+        ) : (
+          <div id="result-wrapper" className="flex flex-col w-full gap-8">
+            <div id="results" className="flex flex-col gap-2">
+              <span className="[font-weight:var(--extra-bold)] text-4xl">
+                Scores
+              </span>
+              <div className="w-full grid grid-rows-3 rounded-sm border-black border-2 p-1">
+                <div
+                  id="score-category"
+                  className="grid row-span-1 grid-cols-4 [font-weight:var(--extra-bold)] p-1"
+                >
+                  <div className="flex items-center justify-center">
+                    Overall
+                  </div>
+                  <div className="flex items-center justify-center">
+                    Environmental
+                  </div>
+                  <div className="flex items-center justify-center">Social</div>
+                  <div className="flex items-center justify-center">
+                    Governance
+                  </div>
+                </div>
+                <div id="score" className="grid row-span-1 grid-cols-4">
+                  <div className="flex items-center justify-center">
+                    {textResultState[0]}
+                  </div>
+                  <div className="flex items-center justify-center">
+                    {textResultState[1]}
+                  </div>
+                  <div className="flex items-center justify-center">
+                    {textResultState[2]}
+                  </div>
+                  <div className="flex items-center justify-center">
+                    {textResultState[3]}
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center justify-center">Social</div>
-              <div className="flex items-center justify-center">Governance</div>
             </div>
-            <div id="score" className="grid row-span-1 grid-cols-4">
-              <div className="flex items-center justify-center">
-                {textResultState.total}
-              </div>
-              <div className="flex items-center justify-center">
-                {textResultState.env}
-              </div>
-              <div className="flex items-center justify-center">
-                {textResultState.soc}
-              </div>
-              <div className="flex items-center justify-center">
-                {textResultState.gov}
-              </div>
+
+            <div id="visualization-wrapper" className="w-full">
+              <span className="[font-weight:var(--extra-bold)] text-4xl">
+                ESG WordCloud
+              </span>
+              <div
+                id="wordcloud-wrapper"
+                className="flex items-center justify-center"
+              ></div>
+              <WordCloud data={wordDictState} demo={false} />
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

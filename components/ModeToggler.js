@@ -8,7 +8,7 @@ export default function ModeToggler({ modeState, setModeState }) {
         }`}
         onClick={() => setModeState(true)}
       >
-        Examine companies' ESG score based on historical data?
+        Examine companies' ESG scores based on historical data?
       </button>
       <button
         id="mode-2"
@@ -17,7 +17,7 @@ export default function ModeToggler({ modeState, setModeState }) {
         }`}
         onClick={() => setModeState(false)}
       >
-        Analyze an ESG score of a text snippet?
+        Find the ESG score of a text based on sentiment analysis?
       </button>
     </div>
   );

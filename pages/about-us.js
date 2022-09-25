@@ -9,7 +9,6 @@ export default function HowToUse() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NavBar />
-      The Team
     </div>
   );
 }

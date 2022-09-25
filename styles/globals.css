@@ -27,7 +27,7 @@ span[contenteditable]:empty::before {
   display: inline-block;
   opacity: 0.5;
   font-style: italic;
-  content: "news articles, reviews, mission statements, etc.";
+  content: "news articles, reviews, mission statements, speeches, etc.";
 }
 
 .loading-spinner {
