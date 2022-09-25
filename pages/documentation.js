@@ -6,6 +6,7 @@ export default function Documentation() {
     <div className="flex flex-col w-screen bg-white [font-weight:var(--normal)] overflow-scroll scrollbar-hide pb-8">
       <Head>
         <title>How to use</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NavBar />
@@ -118,6 +119,31 @@ export default function Documentation() {
             {" "}
             Back End: Python, Pandas, Numpy, Intrinio_sdk, NLTK, Matplotlib,
             Wordcloud, IPython
+          </span>
+        </div>
+
+        <div id="future-directions" className="flex flex-col w-full gap-4">
+          <span className="[font-weight:var(--extra-bold)] text-4xl">
+            Future Directions
+          </span>
+          <span className="">
+            Firstly, the scope of this project can be expanded to obtain
+            relevant data and information about more companies, which can be
+            implemented through a web scraping model and performing text
+            extraction on the articles. Recommendations of related ESG articles
+            can also be added to provide users with easily accessible
+            information and encourage exploration, and this can be done with
+            machine learning concepts including TF-IDF and cosine similarity.
+            Finally, it is also worth considering the quantifiable effect of ESG
+            investing. For this, supervised training can be used to analyze and
+            predict the relationship between a company’s ESG score and their
+            financial performance. Last but not least, in terms of user
+            interface and user experience, a lot of quality-of-life changes can
+            be made from small details like auto-scrolling when graphs are
+            generated and making visualizations more responsive, to larger
+            aspects of the web application like implementing responsiveness for
+            mobile devices and optimizing package size of the app to reduce
+            deploy and load time.
           </span>
         </div>
       </div>

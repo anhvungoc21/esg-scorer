@@ -12,6 +12,7 @@ export default function AboutUs() {
     <div className="flex flex-col h-screen w-screen bg-white [font-weight:var(--normal)] overflow-scroll scrollbar-hide pb-8">
       <Head>
         <title>Meet the team</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NavBar />
@@ -101,7 +102,7 @@ export default function AboutUs() {
             responsive
           />
           <div className="flex flex-col text-sm w-1/2">
-            <span className="text-3xl">Trinh </span>
+            <span className="text-3xl">Trinh Nguyen</span>
             <span className="text-xl">Web-Scraping</span>
             <span>
               Conducted web-scraping to obtain existing ratings for a point of
@@ -128,8 +129,8 @@ export default function AboutUs() {
             responsive
           />
           <div className="flex flex-col text-sm w-1/2">
-            <span className="text-3xl">Ngoc-Anh Vu</span>
-            <span className="text-xl">Front-End & Back-End</span>
+            <span className="text-3xl">Oluwakayode Oke</span>
+            <span className="text-xl">Data Analysis</span>
             <span>
               Performed data analysis of web-scrapped yahoo finance data to
               benchmark ESG scores

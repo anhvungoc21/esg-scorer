@@ -18,6 +18,7 @@ export default function MyApp() {
     <div className="flex flex-col w-screen bg-white [font-weight:var(--normal)] overflow-scroll scrollbar-hide pb-8">
       <Head>
         <title>ESG Scorer</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NavBar />
