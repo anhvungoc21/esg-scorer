@@ -66,14 +66,14 @@ export default function Main() {
       let res;
       if (inputState != "" && inputCompareState != "") {
         res = await fetch(
-          `http://127.0.0.1:5000/get-dow-30?ticker1=${inputState}&ticker2=${inputCompareState}`,
+          `https://esg-scorer-flask-api.herokuapp.com//get-dow-30?ticker1=${inputState}&ticker2=${inputCompareState}`,
           {
             method: "GET",
           }
         );
       } else {
         res = await fetch(
-          `http://127.0.0.1:5000/get-dow-30?ticker1=${inputState}`,
+          `https://esg-scorer-flask-api.herokuapp.com//get-dow-30?ticker1=${inputState}`,
           {
             method: "GET",
           }
@@ -90,13 +90,16 @@ export default function Main() {
     if (!loadingTextState) return;
     (async () => {
       setLoadingTextState(false);
-      const res = await fetch(`http://127.0.0.1:5000/get-esg-visual`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(textInputState),
-      });
+      const res = await fetch(
+        `https://esg-scorer-flask-api.herokuapp.com//get-esg-visual`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(textInputState),
+        }
+      );
 
       const data = await res.json();
       if (!data) return;
