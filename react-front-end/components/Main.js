@@ -3,11 +3,12 @@ import useFirstRender from "../helpers/useFirstRender";
 import LoadingSpinner from "./LoadingSpinner";
 import DemoResult from "./DemoResult";
 import Dropdown from "./Dropdown";
+import ModeToggler from "./ModeToggler";
 import dynamic from "next/dynamic";
 
 export default function Main() {
   // State for rendering the two functionalities
-  const [modeState, setModeState] = useState(false);
+  const [modeState, setModeState] = useState(true);
 
   // Inputs states
   const [inputState, setInputState] = useState("");
@@ -109,7 +110,13 @@ export default function Main() {
           with the help of Machine Learning.
         </div>
 
-        {/* Dropdown */}
+        <div id="mode-toggler-wrapper" className="w-full">
+          <div className="flex flex-col gap-2">
+            <span>Do you want to...</span>
+            <ModeToggler modeState={modeState} setModeState={setModeState} />
+          </div>
+        </div>
+
         <div id="inputs-wrapper" className="w-full">
           <div id="input" className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
@@ -119,7 +126,6 @@ export default function Main() {
 
             <div className="flex flex-col gap-2">
               <span>
-                {" "}
                 (Optional) Which other company do you want to compare?
               </span>
               <Dropdown inputHandler={setInputCompareState} />
@@ -140,13 +146,13 @@ export default function Main() {
         ) : (
           <div id="result-wrapper" className="w-full">
             <div id="results" className="flex flex-col gap-2">
-              <span>What our web scrapper found:</span>
+              <span> </span>
               <div className="rounded-sm border-black border-2 p-2"></div>
             </div>
 
             <div id="visualization-wrapper" className="w-full">
               <span className="[font-weight:var(--extra-bold)] text-4xl">
-                Visualization
+                ESG Visualization
               </span>
               {graphDataState.length != 0 ? (
                 <Chart data={graphDataState} />
@@ -170,12 +176,17 @@ export default function Main() {
           with the help of Machine Learning.
         </div>
 
+        <div id="mode-toggler-wrapper" className="w-full">
+          <div className="flex flex-col gap-2">
+            <span>Do you want to...</span>
+            <ModeToggler modeState={modeState} setModeState={setModeState} />
+          </div>
+        </div>
+
         <div id="input-wrapper" className="w-full">
           <div id="input" className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <span>
-                Enter text to be ESG-analyzed: (Max: 3000 characters){" "}
-              </span>
+              <span>Enter text to be ESG-analyzed:</span>
               <span
                 id="text-input"
                 className="border-black rounded-sm border-2 p-2"

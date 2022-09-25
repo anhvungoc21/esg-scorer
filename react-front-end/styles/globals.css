@@ -29,3 +29,8 @@
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }
+
+.active-mode {
+  background-color: black;
+  color: white;
+}
