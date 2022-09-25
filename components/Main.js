@@ -6,7 +6,7 @@ import Dropdown from "./Dropdown";
 import ModeToggler from "./ModeToggler";
 import dynamic from "next/dynamic";
 
-export default function Main() {
+export default function Main({ setScrollState }) {
   // State for rendering the two functionalities
   const [modeState, setModeState] = useState(true);
 
@@ -19,7 +19,7 @@ export default function Main() {
   const [loadingState, setLoadingState] = useState(false);
   const [demoState, setDemoState] = useState(true);
   const [loadingTextState, setLoadingTextState] = useState(false);
-  // const firstRender = useFirstRender();
+  const firstRender = useFirstRender();
 
   // Visualization states
   const [graphDataState, setGraphDataState] = useState([]);
@@ -47,22 +47,9 @@ export default function Main() {
     setLoadingTextState(true);
   };
 
-  // Automatically scroll to bottom
-  const endRef = useRef(null);
-  const scrollToBottom = () => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // Scroll to bottom when new proofs manifest
-  useEffect(() => {
-    if (!loadingState) return;
-    scrollToBottom();
-  }, [loadingState]);
-
   useEffect(() => {
     if (!loadingState) return;
     (async () => {
-      setLoadingState(false);
       let res;
       if (inputState != "" && inputCompareState != "") {
         res = await fetch(
@@ -83,8 +70,15 @@ export default function Main() {
       const dataArr = await res.json();
       if (!dataArr) return;
       setGraphDataState(dataArr);
+      setScrollState(true);
+      setLoadingState(false);
     })();
   }, [loadingState]);
+
+  useEffect(() => {
+    if (firstRender) return;
+    setScrollState(true);
+  }, [loadingState, Chart]);
 
   useEffect(() => {
     if (!loadingTextState) return;
@@ -105,6 +99,7 @@ export default function Main() {
       if (!data) return;
       setTextResultState([data.total, data.gov, data.env, data.soc]);
       setWordDictState(data.dict);
+      setScrollState(true);
     })();
   }, [loadingTextState]);
 
@@ -303,8 +298,6 @@ export default function Main() {
             </div>
           </div>
         </div>
-
-        <div ref={endRef} />
       </div>
     );
   }

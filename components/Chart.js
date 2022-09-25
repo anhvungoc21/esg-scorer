@@ -10,7 +10,6 @@ import {
 
 // Returns a well-formatted array of objects for graphing
 const parseGraphData = (data) => {
-  console.log("LENGTH" + data.length);
   // Input array length 1
   if (data.length == 1) {
     const thisObj = data[0];
