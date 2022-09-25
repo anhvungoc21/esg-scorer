@@ -1,0 +1,8 @@
+asgiref==3.5.2
+clean-text==0.6.0
+Django==4.1.1
+emoji==1.7.0
+ftfy==6.1.1
+six==1.16.0
+sqlparse==0.4.3
+wcwidth==0.2.5

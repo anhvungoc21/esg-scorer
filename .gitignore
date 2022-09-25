@@ -4,6 +4,8 @@
 /react-front-end/node_modules
 /.pnp
 .pnp.js
+/flask-back-end/venv/lib
+
 
 # testing
 /coverage
@@ -29,7 +31,7 @@ yarn-error.log*
 ./react-front-end/env*.local
 
 # vercel
-.vercel
+/flask-back-end/venv/.vercel
 
 # typescript
 *.tsbuildinfo
