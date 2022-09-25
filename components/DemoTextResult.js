@@ -39,20 +39,18 @@ export default function DemoTextResult() {
         <div className="w-full grid grid-rows-2 rounded-sm border-black border-2 p-1">
           <div
             id="score-category"
-            className="grid row-span-1 grid-cols-4 [font-weight:var(--extra-bold)] p-1"
+            className="grid row-span-1 grid-cols-3 [font-weight:var(--extra-bold)] p-1"
           >
-            <div className="flex items-center justify-center">Overall</div>
             <div className="flex items-center justify-center">
               Environmental
             </div>
             <div className="flex items-center justify-center">Social</div>
             <div className="flex items-center justify-center">Governance</div>
           </div>
-          <div id="score" className="grid row-span-2 grid-cols-4">
-            <div className="flex items-center justify-center">15</div>
-            <div className="flex items-center justify-center">5</div>
-            <div className="flex items-center justify-center">8</div>
-            <div className="flex items-center justify-center">9 </div>
+          <div id="score" className="grid row-span-2 grid-cols-3">
+            <div className="flex items-center justify-center">9</div>
+            <div className="flex items-center justify-center">7</div>
+            <div className="flex items-center justify-center">8 </div>
           </div>
         </div>
       </div>

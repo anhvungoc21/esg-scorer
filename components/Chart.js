@@ -16,17 +16,17 @@ const parseGraphData = (data) => {
     return [
       {
         criteria: "Social",
-        mark_1: thisObj.soc,
+        mark_1: thisObj.soc > 20 ? 20 : thisObj.soc,
         fullMark: 10,
       },
       {
         criteria: "Governance",
-        mark_1: thisObj.gov,
+        mark_1: thisObj.gov > 20 ? 20 : thisObj.gov,
         fullMark: 10,
       },
       {
         criteria: "Environment",
-        mark_1: thisObj.env,
+        mark_1: thisObj.env > 20 ? 20 : thisObj.env,
         fullMark: 10,
       },
     ];
@@ -36,20 +36,20 @@ const parseGraphData = (data) => {
     return [
       {
         criteria: "Social",
-        mark_1: obj1.soc,
-        mark_2: obj2.soc,
+        mark_1: obj1.soc > 20 ? 20 : obj1.soc,
+        mark_2: obj2.soc > 20 ? 20 : obj2.soc,
         fullMark: 10,
       },
       {
         criteria: "Governance",
-        mark_1: obj1.gov,
-        mark_2: obj2.gov,
+        mark_1: obj1.gov > 20 ? 20 : obj1.gov,
+        mark_2: obj2.gov > 20 ? 20 : obj2.gov,
         fullMark: 10,
       },
       {
         criteria: "Environment",
-        mark_1: obj1.env,
-        mark_2: obj2.env,
+        mark_1: obj1.env > 20 ? 20 : obj1.env,
+        mark_2: obj2.env > 20 ? 20 : obj2.env,
         fullMark: 10,
       },
     ];
@@ -68,16 +68,10 @@ export default function Chart({ data }) {
 
   return parsedData.length != 0 ? (
     <ResponsiveContainer width="100%" height={400}>
-      <RadarChart
-        outerRadius={135}
-        width={1095}
-        height={400}
-        cx="50%"
-        data={parsedData}
-      >
+      <RadarChart outerRadius={135} width={1095} height={400} data={parsedData}>
         <PolarGrid />
         <PolarAngleAxis dataKey="criteria" />
-        <PolarRadiusAxis angle={30} domain={[-10, 10]} />
+        <PolarRadiusAxis angle={30} domain={[-10, 20]} />
         {data.map((e, i) => {
           return (
             <Radar

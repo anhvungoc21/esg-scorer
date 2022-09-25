@@ -285,11 +285,11 @@ export default function Main({ setScrollState }) {
               <div className="w-full grid grid-rows-3 rounded-sm border-black border-2 p-1">
                 <div
                   id="score-category"
-                  className="grid row-span-1 grid-cols-4 [font-weight:var(--extra-bold)] p-1"
+                  className="grid row-span-1 grid-cols-3 [font-weight:var(--extra-bold)] p-1"
                 >
-                  <div className="flex items-center justify-center">
+                  {/* <div className="flex items-center justify-center">
                     Overall
-                  </div>
+                  </div> */}
                   <div className="flex items-center justify-center">
                     Environmental
                   </div>
@@ -298,10 +298,10 @@ export default function Main({ setScrollState }) {
                     Governance
                   </div>
                 </div>
-                <div id="score" className="grid row-span-1 grid-cols-4">
-                  <div className="flex items-center justify-center">
+                <div id="score" className="grid row-span-1 grid-cols-3">
+                  {/* <div className="flex items-center justify-center">
                     {textResultState[0]}
-                  </div>
+                  </div> */}
                   <div className="flex items-center justify-center">
                     {textResultState[1]}
                   </div>
