@@ -1,4 +1,4 @@
-# esg-scorer
+# ESG Scorer
 
 A web app for providing information and visualizations about ESG scores. 
 Built by Anh Vu, Sherry Rui, Trinh Nguyen, Oluwakayode Oke during the 2022 Robinhood's Hackathon for Social Good.
