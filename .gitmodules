@@ -1,0 +1,3 @@
+[submodule "esg-scorer-api"]
+	path = esg-scorer-api
+	url = https://github.com/anhvungoc21/esg-scorer-api.git
