@@ -21,8 +21,9 @@ export default function Main({ setScrollState }) {
 
   // Loading/Rendering states
   const [loadingState, setLoadingState] = useState(false);
-  const [demoState, setDemoState] = useState(true);
   const [loadingTextState, setLoadingTextState] = useState(false);
+  const [demoState, setDemoState] = useState(true);
+  const [demoTextState, setDemoTextState] = useState(true);
   const firstRender = useFirstRender();
 
   // Visualization states
@@ -58,7 +59,7 @@ export default function Main({ setScrollState }) {
   const handleQueryText = () => {
     if (textInputState == "") return;
 
-    setDemoState(false);
+    setDemoTextState(false);
     setLoadingTextState(true);
   };
 
@@ -293,7 +294,7 @@ export default function Main({ setScrollState }) {
           </div>
         </div>
 
-        {demoState ? (
+        {demoTextState ? (
           <DemoTextResult />
         ) : loadingTextState ? (
           <LoadingSpinner notiState={notiState} />
