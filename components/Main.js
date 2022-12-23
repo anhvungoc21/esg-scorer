@@ -36,8 +36,18 @@ export default function Main({ setScrollState }) {
   const [wordDictState, setWordDictState] = useState({});
   const [textResultState, setTextResultState] = useState([]);
 
+  // Notification
+  const [notiState, setNotiState] = useState("");
+
+  const setNotification = (message) => {
+    setNotiState(message);
+  };
+
   // Handle querying back-end for model 1
   const handleQuery = () => {
+    setNotification(
+      "Access to the data has been deprecated as of December 2022. You can still find the ESG score of any text based on sentiment analysis (the remaining functionality on the right). Thank you for visiting ESG Scorer!"
+    );
     if (inputState == "") return;
 
     setGraphDataState([]);
@@ -48,6 +58,7 @@ export default function Main({ setScrollState }) {
   const handleQueryText = () => {
     if (textInputState == "") return;
 
+    setDemoState(false);
     setLoadingTextState(true);
   };
 
@@ -87,7 +98,6 @@ export default function Main({ setScrollState }) {
   useEffect(() => {
     if (!loadingTextState) return;
     (async () => {
-      setLoadingTextState(false);
       const res = await fetch(
         `https://esg-scorer-flask-api.herokuapp.com//get-esg-visual`,
         {
@@ -106,6 +116,7 @@ export default function Main({ setScrollState }) {
       );
       setWordDictState(data.dict);
       setScrollState(true);
+      setLoadingTextState(false);
     })();
   }, [loadingTextState]);
 
@@ -155,7 +166,7 @@ export default function Main({ setScrollState }) {
               className="w-1/6 p-2 bg-black rounded-sm text-white self-center hover:[opacity:0.5] transition-all"
               onClick={handleQuery}
             >
-              Get ESG data
+              Get ESG Data
             </button>
           </div>
         </div>
@@ -163,7 +174,17 @@ export default function Main({ setScrollState }) {
         {demoState ? (
           <DemoResult />
         ) : loadingState ? (
-          <LoadingSpinner />
+          <div className="flex flex-col items-center gap-8">
+            <LoadingSpinner notiState={notiState} />
+            <div
+              id="notification"
+              className={
+                "w-3/4 text-center" + (notiState.length == 0 ? "hidden" : "")
+              }
+            >
+              {notiState}
+            </div>
+          </div>
         ) : (
           <div id="result-wrapper" className="flex flex-col w-full gap-8">
             <div id="results" className="flex flex-col gap-2">
@@ -274,8 +295,8 @@ export default function Main({ setScrollState }) {
 
         {demoState ? (
           <DemoTextResult />
-        ) : loadingState ? (
-          <LoadingSpinner />
+        ) : loadingTextState ? (
+          <LoadingSpinner notiState={notiState} />
         ) : (
           <div id="result-wrapper" className="flex flex-col w-full gap-8">
             <div id="results" className="flex flex-col gap-2">
@@ -287,9 +308,6 @@ export default function Main({ setScrollState }) {
                   id="score-category"
                   className="grid row-span-1 grid-cols-3 [font-weight:var(--extra-bold)] p-1"
                 >
-                  {/* <div className="flex items-center justify-center">
-                    Overall
-                  </div> */}
                   <div className="flex items-center justify-center">
                     Environmental
                   </div>

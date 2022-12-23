@@ -9,8 +9,6 @@ export default function WordCloud({ data, demo = false }) {
     parsedData = parseDictToArr(data);
   }
 
-  console.log(parsedData);
-
   return (
     <TagCloud minSize={20} maxSize={40} tags={parsedData} shuffle={false} />
   );
